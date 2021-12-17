@@ -1,10 +1,16 @@
 import React from "react";
+import Header from "../header/header";
+import Footer from "../footer/footer";
 
 const MainScreen = () => {
   return (
-    <div className="container">
-      <h1>Main Screen</h1>
-    </div>
+    <React.Fragment>
+      <Header />
+      <main className="wrapper__main container">
+        <h1>Main Screen</h1>
+      </main>
+      <Footer />
+    </React.Fragment>
   );
 };
 
