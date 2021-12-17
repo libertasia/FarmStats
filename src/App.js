@@ -1,20 +1,16 @@
-import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-import {AppRoute} from '../../const';
-import NotFoundScreen from '../not-found-screen/not-found-screen';
-import MainScreen from '../main-screen/main-screen';
-import '../../scss/style.scss';
+import React from "react";
+import {Routes, Route} from "react-router-dom";
+import {AppRoute} from "./const";
+import NotFoundScreen from "./components/not-found-screen/not-found-screen";
+import MainScreen from "./components/main-screen/main-screen";
+import "./scss/blocks/container.scss";
 
 const App = () => {
   return (
-    <Switch>
-      <Route exact path={AppRoute.ROOT}>
-        <MainScreen />
-      </Route>
-      <Route>
-        <NotFoundScreen />
-      </Route>
-    </Switch>
+    <Routes>
+      <Route path={AppRoute.ROOT} element={<MainScreen />} />
+      <Route path="*" element={<NotFoundScreen />} />
+    </Routes>
   );
 };
 
