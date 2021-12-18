@@ -1,0 +1,31 @@
+.tabs-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tabs-list__item--active {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom-color: transparent;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.tabs-list__item--inactive {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.tabs-list__link-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
