@@ -27,7 +27,7 @@ const MainScreen = () => {
     <React.Fragment>
       <Header />
       <main className="wrapper__main container">
-        <h1>Main Screen</h1>
+        <h1 className="visually-hidden">Solita Farms Statistics</h1>
         <Tabs />
         <DataTable
           data={data}
