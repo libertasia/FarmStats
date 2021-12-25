@@ -3,7 +3,6 @@ export const AppRoute = {
 };
 
 export const APIRoute = {
-  // ERROR_404: `/404`,
   FARMS: `/v1/farms`,
 };
 
