@@ -5,37 +5,19 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import Tabs from "../tabs/tabs";
 import DataTable from "../data-table/data-table";
-import {getActiveTab, getAllFarmsLoadedStatus, getAllFarmsStats, getAllFarmsStatsLoadedStatus} from "../../store/selectors";
+import {getActiveTab, getAllFarmsLoadedStatus, getAllFarmsStatsLoadedStatus, getFilteredFarmsStats, getAllFarmsStatsLoadingStatus} from "../../store/selectors";
 import {fetchAllFarmsStats} from "../../store/api-actions";
-import {TabTypes} from "../../const";
-
-// const data = [
-//   {
-//     "location": "farm1",
-//     "datetime": "2021",
-//     "sensor_type": "temperature",
-//     "value": 1,
-//   },
-// ];
-
-// for (let i = 2; i < 240; i++) {
-//   data.push({
-//     "location": "farm1",
-//     "datetime": "2021",
-//     "sensor_type": "temperature",
-//     "value": i,
-//   })
-// }
+import {TabType} from "../../const";
+import Filter from "../filter/filter";
 
 const MainScreen = (props) => {
-  const {activeTab, allFarmsStats, isAllFarmsStatsLoaded, isAllFarmsLoaded, loadFarmsStats} = props;
+  const {activeTab, isAllFarmsStatsLoaded, isAllFarmStatsLoading, isAllFarmsLoaded, loadFarmsStats, filteredStats} = props;
 
   useEffect(() => {
-    if (!isAllFarmsStatsLoaded && isAllFarmsLoaded) {
-      console.log(`loading farm stats`)
+    if (isAllFarmsLoaded && !isAllFarmStatsLoading && !isAllFarmsStatsLoaded) {
       loadFarmsStats();
     }
-  }, [isAllFarmsStatsLoaded, isAllFarmsLoaded]);
+  }, [isAllFarmsStatsLoaded, isAllFarmsLoaded, isAllFarmStatsLoading]);
 
   return (
     <React.Fragment>
@@ -43,10 +25,13 @@ const MainScreen = (props) => {
       <main className="wrapper__main container">
         <h1 className="visually-hidden">Solita Farms Statistics</h1>
         <Tabs />
-        {activeTab === TabTypes.TABLE &&
-          <DataTable
-            data={allFarmsStats}
-          />
+        {activeTab === TabType.TABLE &&
+          <section>
+            <Filter />
+            <DataTable
+              data={filteredStats}
+            />
+          </section>
         }
       </main>
       <Footer />
@@ -60,8 +45,9 @@ MainScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
   activeTab: getActiveTab(state),
-  allFarmsStats: getAllFarmsStats(state),
+  filteredStats: getFilteredFarmsStats(state),
   isAllFarmsStatsLoaded: getAllFarmsStatsLoadedStatus(state),
+  isAllFarmStatsLoading: getAllFarmsStatsLoadingStatus(state),
   isAllFarmsLoaded: getAllFarmsLoadedStatus(state),
 });
 

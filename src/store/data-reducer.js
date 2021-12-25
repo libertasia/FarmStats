@@ -10,8 +10,6 @@ const initialState = {
 const dataReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_ALL_FARMS:
-      console.log(`case ActionType.LOAD_ALL_FARMS:`)
-      console.log(action.payload.farms)
       return {
         ...state,
         farms: action.payload.farms,

@@ -6,7 +6,7 @@ export const APIRoute = {
   FARMS: `/v1/farms`,
 };
 
-export const TabTypes = {
+export const TabType = {
   GRAPHS: `graphs`,
   TABLE: `table`,
 };
@@ -25,3 +25,9 @@ export const TableHeaders = [
     title: `Value`,
   }
 ];
+
+export const MetricType = {
+  PH: `ph`,
+  RAINFALL: `rainfall`,
+  TEMPERATURE: `temperature`,
+};

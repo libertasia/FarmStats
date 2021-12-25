@@ -1,17 +1,17 @@
 import React from "react";
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
-import {TabTypes} from "../../const";
+import {TabType} from "../../const";
 import {setActiveTab} from "../../store/action";
 import {getActiveTab} from "../../store/selectors";
 
 const TabDetails = [
   {
-    type: TabTypes.TABLE,
+    type: TabType.TABLE,
     title: `Table`
   },
   {
-    type: TabTypes.GRAPHS,
+    type: TabType.GRAPHS,
     title: `Graphs`
   },
 ];
