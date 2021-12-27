@@ -6,9 +6,10 @@ import Footer from "../footer/footer";
 import Tabs from "../tabs/tabs";
 import DataTable from "../data-table/data-table";
 import {getActiveTab, getAllFarmsLoadedStatus, getAllFarmsStatsLoadedStatus, getFilteredFarmsStats, getAllFarmsStatsLoadingStatus} from "../../store/selectors";
-import {fetchAllFarmsStats} from "../../store/api-actions";
+import {fetchAllFarmsStats, fetchMonthlyStats} from "../../store/api-actions";
 import {TabType} from "../../const";
 import Filter from "../filter/filter";
+import DataGraphs from "../data-graphs/data-graphs";
 
 const MainScreen = (props) => {
   const {activeTab, isAllFarmsStatsLoaded, isAllFarmStatsLoading, isAllFarmsLoaded, loadFarmsStats, filteredStats} = props;
@@ -24,14 +25,15 @@ const MainScreen = (props) => {
       <Header />
       <main className="wrapper__main container">
         <h1 className="visually-hidden">Solita Farms Statistics</h1>
+        <Filter />
         <Tabs />
         {activeTab === TabType.TABLE &&
-          <section>
-            <Filter />
-            <DataTable
-              data={filteredStats}
-            />
-          </section>
+          <DataTable
+            data={filteredStats}
+          />
+        }
+        {activeTab === TabType.GRAPHS &&
+          <DataGraphs />
         }
       </main>
       <Footer />
@@ -54,6 +56,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   loadFarmsStats() {
     dispatch(fetchAllFarmsStats());
+    dispatch(fetchMonthlyStats());
   },
 });
 

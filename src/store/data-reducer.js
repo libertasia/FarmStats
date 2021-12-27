@@ -3,6 +3,7 @@ import {ActionType} from "./action";
 const initialState = {
   farms: [],
   farmsStats: [],
+  monthlyStats: [],
   isAllFarmsLoaded: false,
   isAllFarmsStatsLoaded: false,
 };
@@ -20,6 +21,11 @@ const dataReducer = (state = initialState, action) => {
         ...state,
         farmsStats: [...state.farmsStats, ...action.payload.farmsStats],
         isAllFarmsStatsLoaded: action.payload.isAllFarmsStatsLoaded,
+      };
+    case ActionType.LOAD_MONTHLY_STATS:
+      return {
+        ...state,
+        monthlyStats: [...state.monthlyStats, action.payload],
       };
     default:
       return state;

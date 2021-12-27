@@ -31,3 +31,9 @@ export const MetricType = {
   RAINFALL: `rainfall`,
   TEMPERATURE: `temperature`,
 };
+
+export const AggregationType = {
+  AVERAGE: `average`,
+  MEDIAN: `median`,
+  DEVIATION: `standard_deviation`,
+};

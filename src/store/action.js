@@ -2,15 +2,23 @@ export const ActionType = {
   SET_ACTIVE_TAB: `view/setActiveTab`,
   SET_METRIC_FILTER: `view/setMetricFilter`,
   SET_LOCATION_FILTER:`view/setLocationFilter`,
+  SET_ACTIVE_AGGREGATION: `view/setActiveAggregation`,
   LOAD_ALL_FARMS: `data/loadAllFarms`,
   LOAD_ALL_FARMS_STATS: `data/loadAllFarmsStats`,
+  LOAD_MONTHLY_STATS: `data/loadMonthlyStats`,
   FETCH_ALL_FARMS_ERROR: `data/fetchAllFarmsError`,
   FETCH_ALL_FARMS_STATS_ERROR: `data/fetchAllFarmsStatsError`,
+  FETCH_MONTHLY_STATS_ERROR: `data/fetchMonthlyStatsError`,
 };
 
 export const setActiveTab = (activeTab) => ({
   type: ActionType.SET_ACTIVE_TAB,
   payload: activeTab,
+});
+
+export const setActiveAggregation = (aggregation) => ({
+  type: ActionType.SET_ACTIVE_AGGREGATION,
+  payload: aggregation,
 });
 
 export const loadAllFarms = (farms, isAllFarmsLoaded) => ({
@@ -28,8 +36,18 @@ export const loadAllFarmsStats = (farmsStats, isAllFarmsStatsLoaded) => ({
   payload: {farmsStats, isAllFarmsStatsLoaded},
 });
 
+export const loadMonthlyStats = (stats) => ({
+  type: ActionType.LOAD_MONTHLY_STATS,
+  payload: stats,
+});
+
 export const fetchAllFarmsStatsError = (error) => ({
   type: ActionType.FETCH_ALL_FARMS_STATS_ERROR,
+  payload: {error},
+});
+
+export const fetchMonthlyStatsError = (error) => ({
+  type: ActionType.FETCH_MONTHLY_STATS_ERROR,
   payload: {error},
 });
 

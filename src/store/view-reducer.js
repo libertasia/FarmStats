@@ -1,8 +1,9 @@
 import {ActionType} from "./action";
-import {MetricType, TabType} from "../const";
+import {AggregationType, MetricType, TabType} from "../const";
 
 const initialState = {
   activeTab: TabType.TABLE,
+  activeAggregation: AggregationType.AVERAGE,
   locations: [],
   metrics: [
     {
@@ -35,6 +36,11 @@ const viewReducer = (state = initialState, action) => {
       return {
         ...state,
         activeTab: action.payload,
+      };
+    case ActionType.SET_ACTIVE_AGGREGATION:
+      return {
+        ...state,
+        activeAggregation: action.payload,
       };
     case ActionType.SET_METRIC_FILTER:
       const updatedMetric = [...state.metrics];

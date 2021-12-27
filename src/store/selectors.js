@@ -5,6 +5,7 @@ import {generateFilteredData} from "../utils";
 export const getActiveTab = (state) => state[NameSpace.VIEW].activeTab;
 export const getMetricTypes = (state) => state[NameSpace.VIEW].metrics;
 export const getLocations = (state) => state[NameSpace.VIEW].locations;
+export const getActiveAggregation = (state) => state[NameSpace.VIEW].activeAggregation;
 export const getAllFarms = (state) => state[NameSpace.DATA].farms;
 export const getAllFarmsStats = (state) => state[NameSpace.DATA].farmsStats;
 export const getAllFarmsLoadedStatus = (state) => state[NameSpace.DATA].isAllFarmsLoaded;
