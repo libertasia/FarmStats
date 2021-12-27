@@ -1,6 +1,10 @@
 import React, {useState} from "react";
+import dayjs from "dayjs";
 import {TableHeaders} from "../../const";
 import TablePagination from "@mui/material/TablePagination";
+
+var utc = require("dayjs/plugin/utc")
+dayjs.extend(utc)
 
 const DataTable = (props) => {
   const {data} = props;
@@ -37,7 +41,7 @@ const DataTable = (props) => {
               (
                 <tr key={`entry-${entry[`location`]}-${index}`}>
                   <td>{entry[`location`]}</td>
-                  <td>{entry[`datetime`]}</td>
+                  <td><time dateTime={entry[`datetime`]}>{`${dayjs(`${entry[`datetime`]}`).utc().format(`YYYY-MM-DD, HH:mm`)}`}</time></td>
                   <td>{entry[`sensor_type`]}</td>
                   <td>{entry[`value`]}</td>
                 </tr>

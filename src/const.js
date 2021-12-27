@@ -16,7 +16,7 @@ export const TableHeaders = [
     title: `Location`,
   },
   {
-    title: `Datetime`,
+    title: `Datetime (UTC)`,
   },
   {
     title: `Metric`,
