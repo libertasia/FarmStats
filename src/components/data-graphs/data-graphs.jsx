@@ -121,12 +121,5 @@ const mapStateToProps = (state) => ({
   monthlyStats: getMonthlyStats(state),
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   loadFarmsStats() {
-//     dispatch(fetchAllFarmsStats());
-//     dispatch(fetchMonthlyStats());
-//   },
-// });
-
 export {DataGraphs};
 export default connect(mapStateToProps, null)(DataGraphs);
