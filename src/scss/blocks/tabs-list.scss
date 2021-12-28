@@ -1,4 +1,8 @@
-.tabs-list {
+.tabs {
+  margin-bottom: 50px;
+}
+
+.tabs__list {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -9,23 +13,27 @@
   padding: 0;
 }
 
-.tabs-list__item--active {
+.tabs__list-item--active {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-bottom-color: transparent;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
 }
 
-.tabs-list__item--inactive {
+.tabs__list-item--inactive {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.tabs-list__link-btn {
+.tabs__link-btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
   text-decoration: none;
   display: inline;
   margin: 0;
-  padding: 0;
+  padding: 10px 15px;
+  font-family: $main-font;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0.1em;
 }

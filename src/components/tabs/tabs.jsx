@@ -25,16 +25,18 @@ const Tabs = (props) => {
   };
 
   return (
-    <ul className="tabs-list container">
-      {
-        TabDetails.map((tab) =>
-          (
-            <li key={tab.type} data-id={tab.type} onClick={handleTabClick} className={`tabs-list__item ${tab.type === activeTab ? `tabs-list__item--active` : `tabs-list__item--inactive`}`}>
-              <button type="button" className="tabs-list__link-btn">{tab.title}</button>
-            </li>
-          ))
-      }
-    </ul>
+    <div className="tabs">
+      <ul className="tabs__list">
+        {
+          TabDetails.map((tab) =>
+            (
+              <li key={tab.type} data-id={tab.type} onClick={handleTabClick} className={`tabs__list-item ${tab.type === activeTab ? `tabs__list-item--active` : `tabs__list-item--inactive`}`}>
+                <button type="button" className="tabs__link-btn">{tab.title}</button>
+              </li>
+            ))
+        }
+      </ul>
+    </div>
   );
 };
 

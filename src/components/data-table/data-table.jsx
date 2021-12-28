@@ -22,8 +22,8 @@ const DataTable = (props) => {
   };
 
   return (
-    <div>
-      <table role="table" width="100%">
+    <div className="table-wrapper">
+      <table className="data-table" role="table">
         <caption className="visually-hidden">Farms Data</caption>
         <thead>
           <tr>

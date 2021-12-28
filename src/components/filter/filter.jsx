@@ -15,14 +15,14 @@ const Filter = (props) => {
   };
 
   return (
-    <section>
+    <section className="filter">
       <h2>Filter options</h2>
-      <form action="#" method="get">
-        <section>
+      <form className="filter__form" action="#" method="get">
+        <section className="filter__form-section">
           <h3>Location</h3>
-          <ul>
+          <ul className="filter__list">
             {locations.map((item) =>
-              <li key={item.farm_id}>
+              <li className="filter__list-item" key={item.farm_id}>
                 <input type="checkbox"
                   id={item.name}
                   name={item.farm_id}
@@ -35,11 +35,11 @@ const Filter = (props) => {
           </ul>
         </section>
 
-        <section>
+        <section className="filter__form-section">
           <h3>Metric</h3>
-          <ul>
+          <ul className="filter__list">
             {metricTypes.map((metric) =>
-              <li key={metric.type}>
+              <li className="filter__list-item" key={metric.type}>
                 <input type="checkbox"
                   id={metric.type}
                   name={metric.type}

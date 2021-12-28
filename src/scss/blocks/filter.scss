@@ -1,0 +1,20 @@
+.filter {
+  margin-bottom: 50px;
+}
+
+.filter__form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.filter__form-section {
+  flex-basis: 50%;
+}
+
+.filter__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
