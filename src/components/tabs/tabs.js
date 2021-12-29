@@ -8,11 +8,11 @@ import {getActiveTab} from "../../store/selectors";
 const TabDetails = [
   {
     type: TabType.TABLE,
-    title: `Table`
+    title: `table`
   },
   {
     type: TabType.GRAPHS,
-    title: `Graphs`
+    title: `graphs`
   },
 ];
 

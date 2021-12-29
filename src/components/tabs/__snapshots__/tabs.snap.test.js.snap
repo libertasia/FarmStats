@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs list renders correctly 1`] = `
+<div>
+  <div
+    class="tabs"
+  >
+    <ul
+      class="tabs__list"
+    >
+      <li
+        class="tabs__list-item tabs__list-item--active"
+        data-id="table"
+      >
+        <button
+          class="tabs__link-btn"
+          type="button"
+        >
+          table
+        </button>
+      </li>
+      <li
+        class="tabs__list-item tabs__list-item--inactive"
+        data-id="graphs"
+      >
+        <button
+          class="tabs__link-btn"
+          type="button"
+        >
+          graphs
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
