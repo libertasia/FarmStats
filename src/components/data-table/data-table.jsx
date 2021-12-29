@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import dayjs from "dayjs";
-import {TableHeaders} from "../../const";
+import {FarmsStatsShape, TableHeaders} from "../../const";
 import TablePagination from "@mui/material/TablePagination";
 
 var utc = require("dayjs/plugin/utc")
@@ -59,6 +59,10 @@ const DataTable = (props) => {
       />
     </div>
   );
+};
+
+DataTable.propTypes = {
+  data: FarmsStatsShape,
 };
 
 export default DataTable;

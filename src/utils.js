@@ -5,3 +5,7 @@ export const generateFilteredData = (allData, locations, metrics) => {
   const selectedMetricsNames = selectedMetrics.map((metric) => metric.type);
   return allData.filter((element) => selectedLocationIds.indexOf(element.farm_id) >= 0 && selectedMetricsNames.indexOf(element.sensor_type) >= 0);
 };
+
+export const getRandomInt = (max) => {
+  return Math.floor(Math.random() * max);
+};

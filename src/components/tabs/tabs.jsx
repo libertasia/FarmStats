@@ -42,7 +42,7 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
   activeTab: PropTypes.string.isRequired,
-  setActiveTab: PropTypes.func,
+  onSetActiveTab: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

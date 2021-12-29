@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AggregationSelectorForm from "../aggregation-selector-form/aggregation-selector-form";
 import {connect} from "react-redux";
+import AggregationSelectorForm from "../aggregation-selector-form/aggregation-selector-form";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +13,8 @@ import {
 } from 'chart.js';
 import {Bar} from 'react-chartjs-2';
 import {getActiveAggregation, getMonthlyStats, getSelectedLocations, getSelectedMetrics} from "../../store/selectors";
+import {MonthlyStatsShape, SelectedLocationsShape, SelectedMetricsShape} from "../../const";
+import {getRandomInt} from "../../utils";
 
 ChartJS.register(
   CategoryScale,
@@ -22,10 +24,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * max);
-};
 
 const DataGraphs = (props) => {
   const {activeAggregation, selectedLocations, selectedMetrics, monthlyStats} = props;
@@ -112,6 +110,9 @@ const DataGraphs = (props) => {
 
 DataGraphs.propTypes = {
   activeAggregation: PropTypes.string.isRequired,
+  selectedLocations: SelectedLocationsShape,
+  selectedMetrics: SelectedMetricsShape,
+  monthlyStats: MonthlyStatsShape,
 };
 
 const mapStateToProps = (state) => ({

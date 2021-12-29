@@ -54,7 +54,8 @@ const AggregationSelectorForm = (props) => {
 };
 
 AggregationSelectorForm.propTypes = {
-  onAggregationTypeClick: PropTypes.func,
+  activeAggregation: PropTypes.string.isRequired,
+  onAggregationTypeClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

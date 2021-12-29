@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import { SelectedLocationsShape, SelectedMetricsShape } from "../../const";
 import {setLocationFilter, setMetricFilter} from "../../store/action";
 import {getLocations, getMetricTypes} from "../../store/selectors";
 
@@ -54,6 +56,13 @@ const Filter = (props) => {
       </form>
     </section>
   );
+};
+
+Filter.propTypes = {
+  metricTypes: SelectedMetricsShape,
+  locations: SelectedLocationsShape,
+  onMetricFilterClick: PropTypes.func.isRequired,
+  onLocationFilterClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
