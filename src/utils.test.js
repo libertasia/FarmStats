@@ -2,7 +2,6 @@ import {mockStats} from "./test-mocks";
 import {generateFilteredData} from "./utils";
 import {MetricType} from "./const";
 
-
 it(`Function generateFilteredData works correctly`, () => {
   const allData = mockStats;
   const locations = [
