@@ -5,7 +5,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Filter} from "./filter";
 import {mockLocations, mockMetrics} from "../../test-mocks";
-import { MetricType } from "../../const";
+import {MetricType} from "../../const";
 
 const mockStore = configureStore({});
 const store = {
