@@ -61,7 +61,7 @@ exports[`DataTable renders correctly 1`] = `
             </time>
           </td>
           <td>
-            ph
+            rainfall
           </td>
           <td>
             5.88
@@ -79,7 +79,7 @@ exports[`DataTable renders correctly 1`] = `
             </time>
           </td>
           <td>
-            ph
+            rainfall
           </td>
           <td>
             5.88
@@ -97,7 +97,7 @@ exports[`DataTable renders correctly 1`] = `
             </time>
           </td>
           <td>
-            ph
+            rainfall
           </td>
           <td>
             5.88

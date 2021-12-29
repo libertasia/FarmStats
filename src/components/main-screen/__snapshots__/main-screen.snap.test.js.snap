@@ -250,7 +250,7 @@ exports[`MainScreen renders correctly 1`] = `
               </time>
             </td>
             <td>
-              ph
+              rainfall
             </td>
             <td>
               5.88
@@ -268,7 +268,7 @@ exports[`MainScreen renders correctly 1`] = `
               </time>
             </td>
             <td>
-              ph
+              rainfall
             </td>
             <td>
               5.88
@@ -286,7 +286,7 @@ exports[`MainScreen renders correctly 1`] = `
               </time>
             </td>
             <td>
-              ph
+              rainfall
             </td>
             <td>
               5.88

@@ -5,29 +5,29 @@ export const mockStats = [
     "location": "Noora's farm",
     "datetime": "2018-12-31T22:00:00.000Z",
     "value": 5.88,
-    "farm_id": "3",
+    "farm_id": "1",
     "sensor_type": "ph"
   },
   {
     "location": "Friman Metsola collective",
     "datetime": "2018-12-31T22:00:00.000Z",
     "value": 5.88,
-    "farm_id": "3",
-    "sensor_type": "ph"
+    "farm_id": "2",
+    "sensor_type": "rainfall"
   },
   {
     "location": "PartialTech Research Farm",
     "datetime": "2018-12-31T22:00:00.000Z",
     "value": 5.88,
     "farm_id": "3",
-    "sensor_type": "ph"
+    "sensor_type": "rainfall"
   },
   {
     "location": "Organic Ossi's Impact That Lasts plantase",
     "datetime": "2018-12-31T22:00:00.000Z",
     "value": 5.88,
-    "farm_id": "3",
-    "sensor_type": "ph"
+    "farm_id": "4",
+    "sensor_type": "rainfall"
   },
 ];
 
