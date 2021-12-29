@@ -18,7 +18,7 @@ const MainScreen = (props) => {
     if (isAllFarmsLoaded && !isAllFarmsStatsLoaded) {
       loadFarmsStats();
     }
-  }, [isAllFarmsStatsLoaded, isAllFarmsLoaded]);
+  }, [isAllFarmsStatsLoaded, isAllFarmsLoaded, loadFarmsStats]);
 
   return (
     <React.Fragment>
