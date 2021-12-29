@@ -37,6 +37,7 @@ const AggregationSelectorForm = (props) => {
             {AggregationTypesDetails.map((item) =>
               <li key={item.type}>
                 <input type="radio"
+                  data-testid={item.type}
                   id={item.type}
                   name="aggregationType"
                   value={item.type}
