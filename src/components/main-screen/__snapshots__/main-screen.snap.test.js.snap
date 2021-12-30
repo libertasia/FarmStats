@@ -46,14 +46,14 @@ exports[`MainScreen renders correctly 1`] = `
             >
               <input
                 checked=""
-                id="Noora's farm"
+                id="farm 1"
                 name="1"
                 type="checkbox"
               />
               <label
-                for="Noora's farm"
+                for="farm 1"
               >
-                Noora's farm
+                farm 1
               </label>
             </li>
             <li
@@ -61,14 +61,14 @@ exports[`MainScreen renders correctly 1`] = `
             >
               <input
                 checked=""
-                id="Friman Metsola collective"
+                id="farm 2"
                 name="2"
                 type="checkbox"
               />
               <label
-                for="Friman Metsola collective"
+                for="farm 2"
               >
-                Friman Metsola collective
+                farm 2
               </label>
             </li>
             <li
@@ -76,14 +76,14 @@ exports[`MainScreen renders correctly 1`] = `
             >
               <input
                 checked=""
-                id="PartialTech Research Farm"
+                id="farm 3"
                 name="3"
                 type="checkbox"
               />
               <label
-                for="PartialTech Research Farm"
+                for="farm 3"
               >
-                PartialTech Research Farm
+                farm 3
               </label>
             </li>
             <li
@@ -91,14 +91,14 @@ exports[`MainScreen renders correctly 1`] = `
             >
               <input
                 checked=""
-                id="Organic Ossi's Impact That Lasts plantase"
+                id="farm 4"
                 name="4"
                 type="checkbox"
               />
               <label
-                for="Organic Ossi's Impact That Lasts plantase"
+                for="farm 4"
               >
-                Organic Ossi's Impact That Lasts plantase
+                farm 4
               </label>
             </li>
           </ul>
@@ -222,7 +222,7 @@ exports[`MainScreen renders correctly 1`] = `
         <tbody>
           <tr>
             <td>
-              Noora's farm
+              farm 1
             </td>
             <td>
               <time
@@ -240,7 +240,7 @@ exports[`MainScreen renders correctly 1`] = `
           </tr>
           <tr>
             <td>
-              Friman Metsola collective
+              farm 2
             </td>
             <td>
               <time
@@ -258,7 +258,7 @@ exports[`MainScreen renders correctly 1`] = `
           </tr>
           <tr>
             <td>
-              PartialTech Research Farm
+              farm 3
             </td>
             <td>
               <time
@@ -276,7 +276,7 @@ exports[`MainScreen renders correctly 1`] = `
           </tr>
           <tr>
             <td>
-              Organic Ossi's Impact That Lasts plantase
+              farm 4
             </td>
             <td>
               <time

@@ -33,7 +33,7 @@ exports[`DataTable renders correctly 1`] = `
       <tbody>
         <tr>
           <td>
-            Noora's farm
+            farm 1
           </td>
           <td>
             <time
@@ -51,7 +51,7 @@ exports[`DataTable renders correctly 1`] = `
         </tr>
         <tr>
           <td>
-            Friman Metsola collective
+            farm 2
           </td>
           <td>
             <time
@@ -69,7 +69,7 @@ exports[`DataTable renders correctly 1`] = `
         </tr>
         <tr>
           <td>
-            PartialTech Research Farm
+            farm 3
           </td>
           <td>
             <time
@@ -87,7 +87,7 @@ exports[`DataTable renders correctly 1`] = `
         </tr>
         <tr>
           <td>
-            Organic Ossi's Impact That Lasts plantase
+            farm 4
           </td>
           <td>
             <time

@@ -2,28 +2,28 @@ import {MetricType} from "./const";
 
 export const mockStats = [
   {
-    "location": "Noora's farm",
+    "location": "farm 1",
     "datetime": "2018-12-31T22:00:00.000Z",
     "value": 5.88,
     "farm_id": "1",
     "sensor_type": "ph"
   },
   {
-    "location": "Friman Metsola collective",
+    "location": "farm 2",
     "datetime": "2018-12-31T22:00:00.000Z",
     "value": 5.88,
     "farm_id": "2",
     "sensor_type": "rainfall"
   },
   {
-    "location": "PartialTech Research Farm",
+    "location": "farm 3",
     "datetime": "2018-12-31T22:00:00.000Z",
     "value": 5.88,
     "farm_id": "3",
     "sensor_type": "rainfall"
   },
   {
-    "location": "Organic Ossi's Impact That Lasts plantase",
+    "location": "farm 4",
     "datetime": "2018-12-31T22:00:00.000Z",
     "value": 5.88,
     "farm_id": "4",
@@ -34,22 +34,22 @@ export const mockStats = [
 export const mockLocations = [
   {
     "farm_id": "1",
-    "name": "Noora's farm",
+    "name": "farm 1",
     "isSelected": true,
   },
   {
     "farm_id": "2",
-    "name": "Friman Metsola collective",
+    "name": "farm 2",
     "isSelected": true,
   },
   {
     "farm_id": "3",
-    "name": "PartialTech Research Farm",
+    "name": "farm 3",
     "isSelected": true,
   },
   {
     "farm_id": "4",
-    "name": "Organic Ossi's Impact That Lasts plantase",
+    "name": "farm 4",
     "isSelected": true,
   }
 ];
@@ -177,5 +177,28 @@ export const mockMonthlyStats = [
         "standard_deviation": 4.5688
       },
     ]
+  },
+];
+
+export const mockFarms = [
+  {
+    "farm_id": "1",
+    "name": "farm 1",
+    "location": "Metsola"
+  },
+  {
+    "farm_id": "2",
+    "name": "farm 2",
+    "location": "Viikki"
+  },
+  {
+    "farm_id": "3",
+    "name": "farm 3",
+    "location": "Tampere"
+  },
+  {
+    "farm_id": "4",
+    "name": "farm 4",
+    "location": "Eteläesplanadi"
   },
 ];

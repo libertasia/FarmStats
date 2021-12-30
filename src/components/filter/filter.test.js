@@ -53,7 +53,7 @@ describe(`Filter`, () => {
         </Provider>
     );
 
-    userEvent.click(screen.getByText(`Noora's farm`));
+    userEvent.click(screen.getByText(`farm 1`));
     userEvent.click(screen.getByText(MetricType.PH));
     expect(metricTypeCheckboxClickHandler).toBeCalled();
     expect(locationCheckboxClickHandler).toBeCalled();
