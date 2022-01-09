@@ -1,3 +1,5 @@
+import csv
+import glob
 from fastapi import FastAPI
 
 app = FastAPI(
@@ -5,6 +7,20 @@ app = FastAPI(
     description="Made by Anastasiia Erokhina"
 )
 
+@app.post("/init")
+async def init_api():
+    """
+    Loads data from CSV files into datastore. Also adds some additional info about the farms.
+    """
+    data_directory = "../csv_data"
+    res = []
+    csv_files = glob.glob(f"{data_directory}/*.csv")
+    for file_path in csv_files:
+        with open(file_path) as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for line in csv_reader:
+                res.append(line)
+    return res
 
 @app.get("/v1/farms")
 async def get_all_farms():
