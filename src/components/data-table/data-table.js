@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import dayjs from "dayjs";
 import {FarmsStatsShape, TableHeaders} from "../../const";
 import TablePagination from "@mui/material/TablePagination";
+import EmptyDataMessage from "../empty-data-message/empty-data-message";
 
 var utc = require("dayjs/plugin/utc")
 dayjs.extend(utc)
@@ -22,42 +23,47 @@ const DataTable = (props) => {
   };
 
   return (
-    <div className="table-wrapper">
-      <table className="data-table" role="table">
-        <caption className="visually-hidden">Farms Data</caption>
-        <thead>
-          <tr>
-            {
-              TableHeaders.map ((item) =>
-              (
-                <th key={item.title}>{item.title}</th>
-              ))
-            }
-          </tr>
-        </thead>
-        <tbody>
-          {
-             data.slice(page*rowsPerPage, page*rowsPerPage + rowsPerPage).map((entry, index) =>
-              (
-                <tr key={`entry-${entry[`location`]}-${index}`}>
-                  <td>{entry[`location`]}</td>
-                  <td><time dateTime={entry[`datetime`]}>{`${dayjs(`${entry[`datetime`]}`).utc().format(`YYYY-MM-DD, HH:mm`)}`}</time></td>
-                  <td>{entry[`sensor_type`]}</td>
-                  <td>{entry[`value`]}</td>
+    <React.Fragment>
+      {data.length > 0
+        ? <div className="table-wrapper">
+            <table className="data-table" role="table">
+              <caption className="visually-hidden">Farms Data</caption>
+              <thead>
+                <tr>
+                  {
+                    TableHeaders.map ((item) =>
+                    (
+                      <th key={item.title}>{item.title}</th>
+                    ))
+                  }
                 </tr>
-              ))
-          }
-        </tbody>
-      </table>
-      <TablePagination
-        component="div"
-        count={data.length}
-        page={page}
-        onPageChange={handleChangePage}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </div>
+              </thead>
+              <tbody>
+                {
+                  data.slice(page*rowsPerPage, page*rowsPerPage + rowsPerPage).map((entry, index) =>
+                    (
+                      <tr key={`entry-${entry[`location`]}-${index}`}>
+                        <td>{entry[`location`]}</td>
+                        <td><time dateTime={entry[`datetime`]}>{`${dayjs(`${entry[`datetime`]}`).utc().format(`YYYY-MM-DD, HH:mm`)}`}</time></td>
+                        <td>{entry[`sensor_type`]}</td>
+                        <td>{entry[`value`]}</td>
+                      </tr>
+                    ))
+                }
+              </tbody>
+            </table>
+            <TablePagination
+              component="div"
+              count={data.length}
+              page={page}
+              onPageChange={handleChangePage}
+              rowsPerPage={rowsPerPage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </div>
+        : <EmptyDataMessage />
+      }
+    </React.Fragment>
   );
 };
 

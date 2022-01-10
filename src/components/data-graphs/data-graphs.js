@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import AggregationSelectorForm from "../aggregation-selector-form/aggregation-selector-form";
+import EmptyDataMessage from "../empty-data-message/empty-data-message";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -96,13 +97,14 @@ const DataGraphs = (props) => {
   return (
     <React.Fragment>
       <AggregationSelectorForm />
-      {
-        selectedMetrics.map((metric) => (
-          <Bar key={metric.type}
-            options={generateGraphOptions(metric)}
-            data={generateGraphData(metric)}
-          />
-        ))
+      {selectedLocations.length > 0 && selectedMetrics.length > 0
+        ? selectedMetrics.map((metric) => (
+            <Bar key={metric.type}
+              options={generateGraphOptions(metric)}
+              data={generateGraphData(metric)}
+            />
+          ))
+        : <EmptyDataMessage />
       }
     </React.Fragment>
   );
