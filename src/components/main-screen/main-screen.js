@@ -27,13 +27,9 @@ const MainScreen = (props) => {
         <h1 className="visually-hidden">Solita Farms Statistics</h1>
         <Filter />
         <Tabs />
-        {activeTab === TabType.TABLE &&
-          <DataTable
-            data={filteredStats}
-          />
-        }
-        {activeTab === TabType.GRAPHS &&
-          <DataGraphs />
+        {activeTab === TabType.TABLE
+          ? <DataTable data={filteredStats} />
+          : <DataGraphs />
         }
       </main>
       <Footer />
