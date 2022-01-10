@@ -14,14 +14,14 @@
 }
 
 .tabs__list-item--active {
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 2px solid $border-color;
   border-bottom-color: transparent;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
 }
 
 .tabs__list-item--inactive {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid $border-color;
 }
 
 .tabs__link-btn {
@@ -37,4 +37,9 @@
   font-size: 20px;
   letter-spacing: 0.1em;
   text-transform: capitalize;
+  color: $light-blue;
+
+  &:hover {
+    transform: scale3d(1.02,1.02,1.02);
+  }
 }
