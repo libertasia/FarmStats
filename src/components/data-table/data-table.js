@@ -25,11 +25,11 @@ const DataTable = (props) => {
   return (
     <React.Fragment>
       {data.length > 0
-        ? <div className="table-wrapper">
-            <table className="data-table" role="table">
+        ? <div className="table">
+            <table className="table__data" role="table">
               <caption className="visually-hidden">Farms Data</caption>
-              <thead>
-                <tr>
+              <thead className="table__header">
+                <tr className="table__header-row">
                   {
                     TableHeaders.map ((item) =>
                     (
@@ -38,11 +38,11 @@ const DataTable = (props) => {
                   }
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="table__body">
                 {
                   data.slice(page*rowsPerPage, page*rowsPerPage + rowsPerPage).map((entry, index) =>
                     (
-                      <tr key={`entry-${entry[`location`]}-${index}`}>
+                      <tr className="table__body-row" key={`entry-${entry[`location`]}-${index}`}>
                         <td>{entry[`location`]}</td>
                         <td><time dateTime={entry[`datetime`]}>{`${dayjs(`${entry[`datetime`]}`).utc().format(`YYYY-MM-DD, HH:mm`)}`}</time></td>
                         <td>{entry[`sensor_type`]}</td>
@@ -53,6 +53,7 @@ const DataTable = (props) => {
               </tbody>
             </table>
             <TablePagination
+              className="table__pagination"
               component="div"
               count={data.length}
               page={page}

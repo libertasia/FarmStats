@@ -1,0 +1,36 @@
+.table {
+  margin: 50px 0;
+}
+
+.table__data {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table__header-row th,
+.table__body-row td {
+  padding: 6px;
+  border: 1px solid $border-color;
+
+  @media (min-width: $mobile) and (max-width: $table-breakpoint) {
+    padding: 4px;
+  }
+}
+
+.table__header-row th {
+  border-bottom: none;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: $footer-background;
+  letter-spacing: 0.1em;
+
+  @media (min-width: $mobile) and (max-width: $table-breakpoint) {
+    font-size: 16px;
+    letter-spacing: normal;
+  }
+}
+
+.table__body-row td {
+  color: $table-data-text-color;
+}
