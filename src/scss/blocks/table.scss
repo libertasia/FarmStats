@@ -15,6 +15,7 @@
 
   @media (min-width: $mobile) and (max-width: $table-breakpoint) {
     padding: 4px;
+    font-size: 14px;
   }
 }
 
@@ -26,7 +27,7 @@
   letter-spacing: 0.1em;
 
   @media (min-width: $mobile) and (max-width: $table-breakpoint) {
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: normal;
   }
 }

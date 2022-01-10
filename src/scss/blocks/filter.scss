@@ -11,10 +11,120 @@
 
 .filter__form-section {
   flex-basis: 50%;
+
+  @media (min-width: $mobile) and (max-width: $table-breakpoint) {
+    flex-basis: 100%;
+  }
+}
+
+.filter__form-section h3 {
+  font-weight: 500;
 }
 
 .filter__list {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.filter__list-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.filter__label {
+  padding-left: 40px;
+  position: relative;
+}
+
+.filter__checkbox {
+  position: absolute;
+}
+
+.filter__checkbox + .filter__label {
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background-color: $basic-white;
+    border: 0.7px solid $border-color;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 6px;
+    left: 6px;
+    width: 12px;
+    height: 10px;
+    background-image: url("../../img/check-mark-icon.svg");
+  }
+}
+
+.filter__checkbox:checked + .filter__label {
+  &::after {
+    display: block;
+  }
+}
+
+.filter__checkbox:hover + .filter__label {
+  &::before {
+    border: 2px solid $light-blue;
+  }
+}
+
+.filter__checkbox:active + .filter__label {
+  &::before {
+    border-color: $header-background;
+  }
+}
+
+.filter__checkbox:focus + .filter__label::before {
+  &::before {
+    border-color: $header-background;
+  }
+
+  &::after {
+    display: none;
+  }
+  outline: 0.7px solid $header-background;
+}
+
+.filter__checkbox:checked:focus + .filter__label::before {
+  &::before {
+    border-color: $header-background;
+  }
+
+  &::after {
+    display: block;
+  }
+  outline: 0.7px solid $header-background;
+}
+
+.filter__checkbox:disabled + .filter__label::before {
+  &::after {
+    display: none;
+  }
+  background-color: $light-grey;
+  border: 0.7px solid $light-grey;
+}
+
+.filter__checkbox:disabled + .filter__label {
+  color: $light-grey;
 }

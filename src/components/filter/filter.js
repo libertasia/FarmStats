@@ -26,12 +26,13 @@ const Filter = (props) => {
             {locations.map((item) =>
               <li className="filter__list-item" key={item.farm_id}>
                 <input type="checkbox"
+                  className="filter__checkbox visually-hidden"
                   id={item.name}
                   name={item.farm_id}
                   checked={item.isSelected}
                   onChange={handleLocationFilterChange}
                 />
-                <label htmlFor={item.name}>{item.name}</label>
+                <label className="filter__label" htmlFor={item.name}>{item.name}</label>
               </li>
             )}
           </ul>
@@ -43,12 +44,13 @@ const Filter = (props) => {
             {metricTypes.map((metric) =>
               <li className="filter__list-item" key={metric.type}>
                 <input type="checkbox"
+                  className="filter__checkbox visually-hidden"
                   id={metric.type}
                   name={metric.type}
                   checked={metric.isSelected}
                   onChange={handleMetricFilterChange}
                 />
-                <label htmlFor={metric.type}>{metric.type}</label>
+                <label className="filter__label" htmlFor={metric.type}>{metric.type}</label>
               </li>
             )}
           </ul>
