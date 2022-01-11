@@ -1,6 +1,9 @@
 import csv
 import glob
 from fastapi import FastAPI
+from farms_api.datastore import InMemoryDataStore
+
+storage = InMemoryDataStore()
 
 app = FastAPI(
     title="Solita Dev Academy Farms API",
@@ -12,15 +15,16 @@ async def init_api():
     """
     Loads data from CSV files into datastore. Also adds some additional info about the farms.
     """
-    data_directory = "../csv_data"
-    res = []
+    print("initting")
+    data_directory = "./csv_data"
     csv_files = glob.glob(f"{data_directory}/*.csv")
+    print(csv_files)
     for file_path in csv_files:
         with open(file_path) as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for line in csv_reader:
-                res.append(line)
-    return res
+                storage.add_stat_data(line)
+    return {}
 
 @app.get("/v1/farms")
 async def get_all_farms():
