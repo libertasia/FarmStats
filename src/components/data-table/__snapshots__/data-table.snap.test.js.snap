@@ -3,10 +3,10 @@
 exports[`DataTable renders correctly 1`] = `
 <div>
   <div
-    class="table-wrapper"
+    class="table"
   >
     <table
-      class="data-table"
+      class="table__data"
       role="table"
     >
       <caption
@@ -14,8 +14,12 @@ exports[`DataTable renders correctly 1`] = `
       >
         Farms Data
       </caption>
-      <thead>
-        <tr>
+      <thead
+        class="table__header"
+      >
+        <tr
+          class="table__header-row"
+        >
           <th>
             Location
           </th>
@@ -30,8 +34,12 @@ exports[`DataTable renders correctly 1`] = `
           </th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
+      <tbody
+        class="table__body"
+      >
+        <tr
+          class="table__body-row"
+        >
           <td>
             farm 1
           </td>
@@ -49,7 +57,9 @@ exports[`DataTable renders correctly 1`] = `
             5.88
           </td>
         </tr>
-        <tr>
+        <tr
+          class="table__body-row"
+        >
           <td>
             farm 2
           </td>
@@ -67,7 +77,9 @@ exports[`DataTable renders correctly 1`] = `
             5.88
           </td>
         </tr>
-        <tr>
+        <tr
+          class="table__body-row"
+        >
           <td>
             farm 3
           </td>
@@ -85,7 +97,9 @@ exports[`DataTable renders correctly 1`] = `
             5.88
           </td>
         </tr>
-        <tr>
+        <tr
+          class="table__body-row"
+        >
           <td>
             farm 4
           </td>
@@ -106,7 +120,7 @@ exports[`DataTable renders correctly 1`] = `
       </tbody>
     </table>
     <div
-      class="MuiTablePagination-root css-jtlhu6-MuiTablePagination-root"
+      class="MuiTablePagination-root table__pagination css-jtlhu6-MuiTablePagination-root"
     >
       <div
         class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular MuiTablePagination-toolbar css-11bfvty-MuiToolbar-root-MuiTablePagination-toolbar"
