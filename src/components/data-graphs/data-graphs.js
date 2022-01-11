@@ -36,14 +36,14 @@ const DataGraphs = (props) => {
 
   const generateGraphOptions = (metric) => {
     const options = {
-      responsive: true,
+      maintainAspectRatio : false,
       plugins: {
         legend: {
           position: 'top',
         },
         title: {
           display: true,
-          text: metric.type,
+          text: `Monthly ${metric.type}`,
         },
       },
     };
@@ -99,10 +99,12 @@ const DataGraphs = (props) => {
       <AggregationSelectorForm />
       {selectedLocations.length > 0 && selectedMetrics.length > 0
         ? selectedMetrics.map((metric) => (
-            <Bar key={metric.type}
-              options={generateGraphOptions(metric)}
-              data={generateGraphData(metric)}
-            />
+            <div className="graph-wrapper" key={`${metric.type}-section`}>
+              <Bar key={metric.type}
+                options={generateGraphOptions(metric)}
+                data={generateGraphData(metric)}
+              />
+            </div>
           ))
         : <EmptyDataMessage />
       }
