@@ -28,15 +28,16 @@ const AggregationSelectorForm = (props) => {
   };
 
   return (
-    <section>
+    <section className="aggregation-selection">
       <h2 className="visually-hidden">Aggregation options</h2>
-      <form action="#" method="get">
-        <section>
+      <form className="aggregation-selection__form" action="#" method="get">
+        <section className="aggregation-selection__section">
           <h3>Select an aggregation option:</h3>
-          <ul>
+          <ul className="aggregation-selection__list">
             {AggregationTypesDetails.map((item) =>
-              <li key={item.type}>
+              <li className="aggregation-selection__list-item" key={item.type}>
                 <input type="radio"
+                  className="aggregation-selection__radio visually-hidden"
                   data-testid={item.type}
                   id={item.type}
                   name="aggregationType"
@@ -44,7 +45,7 @@ const AggregationSelectorForm = (props) => {
                   checked={item.type === activeAggregation}
                   onChange={handleAggregationTypeChange}
                 />
-                <label htmlFor={item.type}>{item.title}</label>
+                <label className="aggregation-selection__label" htmlFor={item.type}>{item.title}</label>
               </li>
             )}
           </ul>
