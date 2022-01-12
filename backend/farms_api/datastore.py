@@ -17,11 +17,12 @@ class Farm:
         self.established = established
 
 class Measurement:
-    def __init__(self, farm_name: str, measure_date: datetime, sensor_type: str, value: float) -> None:
-        self.farm_name = farm_name
+    def __init__(self, location: str, measure_date: datetime, sensor_type: str, value: float, farm_id: Optional[str] = None) -> None:
+        self.location = location
         self.date = measure_date
         self.sensor_type = sensor_type
         self.value = value
+        self.farm_id = farm_id
 
 class MonthlyAggregation:
     def __init__(self, month: int, year: int, average: float, median: float, stddev: float) -> None:
@@ -48,7 +49,7 @@ class DataStore:
         Parses raw string data and returns a Measurement object.
         If the data doesn't pass validation, returns None.
         """
-        farm_name = data.get("location")
+        location = data.get("location")
         measure_date = data.get("datetime")
         measure_date = datetime.strptime(measure_date, "%Y-%m-%dT%H:%M:%S.%f%z")
         sensor_type = data.get("sensorType")
@@ -68,7 +69,7 @@ class DataStore:
         if sensor_type == SENSOR_NAME_PH:
             if value < 0 or value > 14:
                 return None
-        return Measurement(farm_name, measure_date, sensor_type, value)
+        return Measurement(location, measure_date, sensor_type, value)
 
     def add_stat_data(self, data: Dict[str, str]) -> None:
         raise NotImplementedError
@@ -174,7 +175,7 @@ class MongoDataStore(DataStore):
         parsed_data = self.parse_raw_stats_data(data)
         if parsed_data:
             self.db["measurements"].insert_one({
-                "location": parsed_data.farm_name,
+                "location": parsed_data.location,
                 "datetime": parsed_data.date,
                 "sensor_type": parsed_data.sensor_type,
                 "value": parsed_data.value
@@ -218,7 +219,8 @@ class MongoDataStore(DataStore):
         measurements_docs = self.db["measurements"].find({"location": farm.name})
         for doc in measurements_docs:
             res.append(Measurement(
-                farm_name=farm.name,
+                farm_id=farm_id,
+                location=farm.name,
                 measure_date=doc["datetime"],
                 sensor_type=doc["sensor_type"],
                 value=doc["value"]
@@ -238,7 +240,7 @@ class MongoDataStore(DataStore):
         farm_measurements = []
         for doc in farm_measurements_docs:
             farm_measurements.append(Measurement(
-                farm_name=doc["location"],
+                location=doc["location"],
                 measure_date=doc["datetime"],
                 sensor_type=doc["sensor_type"],
                 value=doc["value"]

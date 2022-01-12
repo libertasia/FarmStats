@@ -1,6 +1,5 @@
 import csv
 import glob
-from os import stat
 from fastapi import FastAPI
 from farms_api.datastore import InMemoryDataStore, MongoDataStore
 
@@ -59,7 +58,7 @@ async def get_all_farms():
     res = []
     for farm in farms:
         res.append({
-            "id": farm.id,
+            "farm_id": farm.id,
             "name": farm.name,
             "location": farm.location
         })
@@ -75,7 +74,7 @@ async def get_farm_details(farm_id: str):
         return {}
     else:
         return {
-            "id": farm.id,
+            "farm_id": farm.id,
             "name": farm.name,
             "location": farm.location,
             "established": farm.established
