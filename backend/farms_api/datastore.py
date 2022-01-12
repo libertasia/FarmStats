@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Dict, List, Optional
 from statistics import median, stdev
+from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 SENSOR_NAME_TEMP = "temperature"
 SENSOR_NAME_RAINFALL = "rainFall"
@@ -77,7 +79,7 @@ class DataStore:
     def get_farms(self) -> List[Farm]:
         raise NotImplementedError
 
-    def get_farm_by_id(self, farm_id: int) -> Farm:
+    def get_farm_by_id(self, farm_id: str) -> Farm:
         raise NotImplementedError
 
     def get_farm_stats(self, farm_id: int) -> List[Measurement]:
@@ -126,7 +128,6 @@ class InMemoryDataStore(DataStore):
     def get_farm_stats(self, farm_id) -> List[Measurement]:
         res = []
         farm = self.get_farm_by_id(farm_id)
-        print(farm.name)
         if not farm:
             return res
         for measurement in self.stats:
@@ -140,6 +141,108 @@ class InMemoryDataStore(DataStore):
         if not farm:
             return res
         farm_measurements = [m for m in self.stats if m.farm_name == farm.name and m.sensor_type == sensor_type]
+        # this dictionary will have yyyy-mm as keys and measurements as values
+        monthly_data = {}
+        for measurement in farm_measurements:
+            key = f"{measurement.date.year}-{measurement.date.month}"
+            if not key in monthly_data:
+                monthly_data[key] = {
+                    "month": measurement.date.month,
+                    "year": measurement.date.year,
+                    "values": []
+                }
+            monthly_data[key]["values"].append(measurement.value)
+        for key, value in monthly_data.items():
+            measurements = value["values"]
+            res.append(MonthlyAggregation(
+                value["month"],
+                value["year"],
+                sum(measurements) / len(measurements),
+                median(measurements),
+                stdev(measurements) if len(measurements) > 1 else 0
+            ))
+        return res
+
+class MongoDataStore(DataStore):
+    mongo_client: MongoClient
+
+    def __init__(self, mongo_addr: str, db_name: str) -> None:
+        self.mongo_client = MongoClient(mongo_addr)
+        self.db = self.mongo_client[db_name]
+
+    def add_stat_data(self, data: Dict[str, str]) -> None:
+        parsed_data = self.parse_raw_stats_data(data)
+        if parsed_data:
+            self.db["measurements"].insert_one({
+                "location": parsed_data.farm_name,
+                "datetime": parsed_data.date,
+                "sensor_type": parsed_data.sensor_type,
+                "value": parsed_data.value
+            })
+
+    def add_farm_info(self, data: Dict[str, str]) -> None:
+        parsed_data = self.parse_raw_farm_data(data)
+        if parsed_data:
+            self.db["farms"].insert_one({
+                "name": parsed_data.name,
+                "location": parsed_data.location,
+                "established": parsed_data.established
+            })
+
+    def get_farms(self) -> List[Farm]:
+        farms_docs = self.db["farms"].find()
+        res = []
+        for doc in farms_docs:
+            res.append(Farm(
+                name=doc["name"],
+                location=doc["location"],
+                established=doc["established"],
+                id=str(doc["_id"])
+            ))
+        return res
+
+    def get_farm_by_id(self, farm_id) -> Farm:
+        doc = self.db["farms"].find_one({"_id": ObjectId(farm_id)})
+        return Farm(
+            name=doc["name"],
+            location=doc["location"],
+            established=doc["established"],
+            id=str(doc["_id"])
+        )
+
+    def get_farm_stats(self, farm_id) -> List[Measurement]:
+        res = []
+        farm = self.get_farm_by_id(farm_id)
+        if not farm:
+            return res
+        measurements_docs = self.db["measurements"].find({"location": farm.name})
+        for doc in measurements_docs:
+            res.append(Measurement(
+                farm_name=farm.name,
+                measure_date=doc["datetime"],
+                sensor_type=doc["sensor_type"],
+                value=doc["value"]
+            ))
+        return res
+
+    def get_monthly_stats(self, farm_id: str, sensor_type: str) -> List[MonthlyAggregation]:
+        res = []
+        farm = self.get_farm_by_id(farm_id)
+        if not farm:
+            return res
+        #farm_measurements_docs = [m for m in self.stats if m.farm_name == farm.name and m.sensor_type == sensor_type]
+        farm_measurements_docs = self.db["measurements"].find({
+            "location": farm.name,
+            "sensor_type": sensor_type
+        })
+        farm_measurements = []
+        for doc in farm_measurements_docs:
+            farm_measurements.append(Measurement(
+                farm_name=doc["location"],
+                measure_date=doc["datetime"],
+                sensor_type=doc["sensor_type"],
+                value=doc["value"]
+            ))
         # this dictionary will have yyyy-mm as keys and measurements as values
         monthly_data = {}
         for measurement in farm_measurements:

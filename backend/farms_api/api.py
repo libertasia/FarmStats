@@ -2,9 +2,13 @@ import csv
 import glob
 from os import stat
 from fastapi import FastAPI
-from farms_api.datastore import InMemoryDataStore
+from farms_api.datastore import InMemoryDataStore, MongoDataStore
 
-storage = InMemoryDataStore()
+#storage = InMemoryDataStore()
+storage = MongoDataStore(
+    "mongodb://localhost:27017",
+    "solita-farms"
+)
 
 app = FastAPI(
     title="Solita Dev Academy Farms API",
@@ -62,7 +66,7 @@ async def get_all_farms():
     return res
 
 @app.get("/v1/farms/{farm_id}")
-async def get_farm_details(farm_id: int):
+async def get_farm_details(farm_id: str):
     """
     Returns info about a specific farm.
     """
@@ -78,7 +82,7 @@ async def get_farm_details(farm_id: int):
         }
 
 @app.get("/v1/farms/{farm_id}/stats")
-async def get_all_farm_stats(farm_id: int):
+async def get_all_farm_stats(farm_id: str):
     """
     Returns all stats for a farm.
     """
@@ -88,7 +92,7 @@ async def get_all_farm_stats(farm_id: int):
     }
 
 @app.get("/v1/farms/{farm_id}/stats/{sensor_type}/monthly")
-async def get_monthly_stats(farm_id: int, sensor_type: str):
+async def get_monthly_stats(farm_id: str, sensor_type: str):
     """
     Returns stats for a given sensor, for a given farm, aggregated monthly.
     """
