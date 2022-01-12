@@ -60,6 +60,8 @@ const DataTable = (props) => {
               onPageChange={handleChangePage}
               rowsPerPage={rowsPerPage}
               onRowsPerPageChange={handleChangeRowsPerPage}
+              showFirstButton={true}
+              showLastButton={true}
             />
           </div>
         : <EmptyDataMessage />
