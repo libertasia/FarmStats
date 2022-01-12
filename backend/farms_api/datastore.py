@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Dict, List, Optional
-from statistics import median
+from statistics import median, stdev
 
 SENSOR_NAME_TEMP = "temperature"
 SENSOR_NAME_RAINFALL = "rainFall"
@@ -52,6 +52,7 @@ class DataStore:
         sensor_type = data.get("sensorType")
         if sensor_type not in VALID_SENSORS:
             return None
+        sensor_type = sensor_type.lower()
         value = data.get("value")
         if not value or value == 'NULL':
             return None
@@ -138,7 +139,7 @@ class InMemoryDataStore(DataStore):
         farm = self.get_farm_by_id(farm_id)
         if not farm:
             return res
-        farm_measurements = [m for m in self.stats if m.farm_name == farm.name]
+        farm_measurements = [m for m in self.stats if m.farm_name == farm.name and m.sensor_type == sensor_type]
         # this dictionary will have yyyy-mm as keys and measurements as values
         monthly_data = {}
         for measurement in farm_measurements:
@@ -150,13 +151,13 @@ class InMemoryDataStore(DataStore):
                     "values": []
                 }
             monthly_data[key]["values"].append(measurement.value)
-        print(monthly_data)
         for key, value in monthly_data.items():
+            measurements = value["values"]
             res.append(MonthlyAggregation(
                 value["month"],
                 value["year"],
-                sum(value["values"]) / len(value["values"]),
-                0,
-                0
+                sum(measurements) / len(measurements),
+                median(measurements),
+                stdev(measurements) if len(measurements) > 1 else 0
             ))
         return res
