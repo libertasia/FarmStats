@@ -1,0 +1,8 @@
+services:
+  farms_api:
+    build: .
+    ports:
+      - "8080:80"
+  mongo:
+    image: "mongo:4.4-bionic"
+    restart: always
