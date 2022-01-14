@@ -5,7 +5,7 @@ from farms_api.datastore import InMemoryDataStore, MongoDataStore
 
 #storage = InMemoryDataStore()
 storage = MongoDataStore(
-    "mongodb://localhost:27017",
+    "mongodb://mongo:27017",
     "solita-farms"
 )
 

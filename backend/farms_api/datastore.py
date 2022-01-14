@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Optional
 from statistics import median, stdev
 from pymongo import MongoClient
@@ -19,7 +19,7 @@ class Farm:
 class Measurement:
     def __init__(self, location: str, measure_date: datetime, sensor_type: str, value: float, farm_id: Optional[str] = None) -> None:
         self.location = location
-        self.date = measure_date
+        self.datetime = measure_date.replace(tzinfo=timezone.utc)
         self.sensor_type = sensor_type
         self.value = value
         self.farm_id = farm_id
@@ -176,7 +176,7 @@ class MongoDataStore(DataStore):
         if parsed_data:
             self.db["measurements"].insert_one({
                 "location": parsed_data.location,
-                "datetime": parsed_data.date,
+                "datetime": parsed_data.datetime,
                 "sensor_type": parsed_data.sensor_type,
                 "value": parsed_data.value
             })
@@ -248,11 +248,11 @@ class MongoDataStore(DataStore):
         # this dictionary will have yyyy-mm as keys and measurements as values
         monthly_data = {}
         for measurement in farm_measurements:
-            key = f"{measurement.date.year}-{measurement.date.month}"
+            key = f"{measurement.datetime.year}-{measurement.datetime.month}"
             if not key in monthly_data:
                 monthly_data[key] = {
-                    "month": measurement.date.month,
-                    "year": measurement.date.year,
+                    "month": measurement.datetime.month,
+                    "year": measurement.datetime.year,
                     "values": []
                 }
             monthly_data[key]["values"].append(measurement.value)
