@@ -55,3 +55,5 @@ At the root of the repo there are two scripts:
  ## Notes
 
  Frontend part of this project assumes that the backend is accessible at http://backend:80 (as it is when running using docker-compose). To use it with the backend provided by Solita, change `"proxy": "http://backend:80/",` line in `package.json` to the address of Solita's backend (e.g. http://localhost:8080 if running it locally).
+
+ Backend API can support different storages, as long as they implement the base `DataStore` class. In the current code you can see `InMemoryDataStore` commented out and replaced by `MongoDataStore`.
