@@ -8,8 +8,13 @@ Because I've been mostly working with frontend technologies previously, the back
 
 The app receives statistical data from the backend and presents them to the user in table and graph forms. The user can filter the data by farm name and/or sensor type. The number and content of displayed graphs depends on selected filters and selected aggregations. If there's no data which satisfies the filters, the app shows a message about that to the user.
 
+Table:
 ![table](./docs/screenshot1.png)
+
+Graphs:
 ![graphs](./docs/screenshot2.png)
+
+Error message:
 ![error-message](./docs/screenshot3.png)
 
 ## Running the project
