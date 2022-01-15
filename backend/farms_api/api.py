@@ -1,11 +1,12 @@
 import csv
 import glob
+import os
 from fastapi import FastAPI
 from farms_api.datastore import InMemoryDataStore, MongoDataStore
 
 #storage = InMemoryDataStore()
 storage = MongoDataStore(
-    "mongodb://mongo:27017",
+    os.environ.get("SOLITA_FARMS_DB_ADDRESS", "mongodb://mongo:27017"),
     "solita-farms"
 )
 
